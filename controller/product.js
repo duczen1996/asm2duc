@@ -4,7 +4,7 @@ const session = require('express-session');
 app.use(express.json());
 
 const MongoClient = require("mongodb").MongoClient;
-const url = "mongodb+srv://duczen:duczen1995@cluster0.wsxbe.mongodb.net/test";
+const url = "mongodb://heroku_2pt4lwrl:bc7i4m4cn1jjaua6rc0mtq654s@ds133875.mlab.com:33875/heroku_2pt4lwrl";
 
 exports.getHomePage = (req, res) => {
   res.render("home", { img: true, nav: true, name: "/home" });
@@ -15,7 +15,7 @@ exports.getDisplayPage = (req, res) => {
     getDisplayPage(
       req,
       res,
-      "ZenManager",
+      "heroku_2pt4lwrl",
       "product",
       true,
       true,
@@ -26,7 +26,7 @@ exports.getDisplayPage = (req, res) => {
     getDisplayPage(
       req,
       res,
-      "ZenManager",
+      "heroku_2pt4lwrl",
       "exportProduct",
       true,
       false,
@@ -47,7 +47,7 @@ exports.getAddProductPage = (req, res) => {
 exports.addProductImport = async (req, res) => {
   let newProduct = getDateAddProduct(req);
   let client = await MongoClient.connect(url);
-  let dbo = client.db("ZenManager");
+  let dbo = client.db("heroku_2pt4lwrl");
   await dbo.collection("product").insertOne(newProduct);
   res.redirect("/import");
 };
@@ -55,7 +55,7 @@ exports.addProductImport = async (req, res) => {
 exports.addProductExport = async (req, res) => {
   let newProduct = getDateAddProduct(req);
   let client = await MongoClient.connect(url);
-  let dbo = client.db("ZenManager");
+  let dbo = client.db("heroku_2pt4lwrl");
   await dbo.collection("exportProduct").insertOne(newProduct);
   res.redirect("/export");
 };
@@ -65,7 +65,7 @@ exports.getDataByDate = (req, res) => {
   const path = req.query.path;
   MongoClient.connect(url, (err, db) => {
     if (err) throw err;
-    var dbo = db.db("ZenManager");
+    var dbo = db.db("heroku_2pt4lwrl");
     let table = "";
     if (path === "/import") {
       table = "product";
@@ -121,7 +121,7 @@ exports.getUpdatePage = (req, res) => {
 
   MongoClient.connect(url, (err, db) => {
     if (err) throw err;
-    const dbo = db.db("ZenManager");
+    const dbo = db.db("heroku_2pt4lwrl");
     const ObjectID = require("mongodb").ObjectID;
     const query = { _id: ObjectID(id) };
     dbo
@@ -146,7 +146,7 @@ exports.updateDataImport = async (req, res) => {
   const newInfo = getDataUpdate(req);
   await MongoClient.connect(url, async function (err, db) {
     if (err) throw err;
-    var dbo = db.db("ZenManager");
+    var dbo = db.db("heroku_2pt4lwrl");
     const mongodb = require("mongodb");
     var query = { _id: new mongodb.ObjectID(id) };
     await dbo
@@ -165,7 +165,7 @@ exports.updateDataExport = async (req, res) => {
   const newInfo = getDataUpdate(req);
   await MongoClient.connect(url, async function (err, db) {
     if (err) throw err;
-    var dbo = db.db("ZenManager");
+    var dbo = db.db("heroku_2pt4lwrl");
     const mongodb = require("mongodb");
     var query = { _id: new mongodb.ObjectID(id) };
     await dbo
@@ -216,7 +216,7 @@ function getDisplayPage(
   var utc = new Date().toJSON().slice(0, 10);
   MongoClient.connect(url, (err, db) => {
     if (err) throw err;
-    var dbo = db.db(database);
+    var dbo = db.db("heroku_2pt4lwrl");
     var query = { date: utc };
     dbo
       .collection(table)
