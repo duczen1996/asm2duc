@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/home.css">
+    {{#if displayCSS}}
+    <script src="js/function.js"></script>
+    <link rel="stylesheet" href="/css/display.css">
+    {{/if}}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        {{#if img}}
+        <div class="img">
+            <img src="https://a.ipricegroup.com/trends-article/do-choi-lego-khong-chi-giup-nguoi-choi-thoa-man-dam-me-choi-ma-con-kich-thich-tu-duy-sang-tao-medium.jpg" alt="zen-hanoi">
+        </div>
+        {{/if}}
+        <div class="title">
+                <h1>Lego Manager</h1>
+        </div>
+        <nav>
+            <div style="position:absolute">
+              <li>{{ name }}</li>
+            </div>
+            {{#if nav}}
+            <div>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </div>
+            {{/if}}
+        </nav>
+    </header>
+    {{{ body }}}
+<footer>
+    <div>Facebook:
+      <a href="https://www.facebook.com/zenmacymin/"> Ductm.com</a>
+    </div>
+    <a> Email:macyzen@gmail.com
+    <br>Phone:0829887933</br> </a>
+  </footer>
+</body>
+</html>
